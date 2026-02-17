@@ -1,0 +1,47 @@
+{
+    "name": "rut-cl",
+    "version": "1.0.0",
+    "description": "🇨🇱 Minimal and robust Chilean RUT validator and formatter",
+    "type": "module",
+    "main": "./dist/index.cjs",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        ".": {
+            "import": "./dist/index.js",
+            "require": "./dist/index.cjs"
+        }
+    },
+    "sideEffects": false,
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "build": "tsup",
+        "dev": "tsup --watch",
+        "test": "vitest",
+        "test:coverage": "vitest run --coverage",
+        "lint": "eslint ."
+    },
+    "keywords": [
+        "rut",
+        "chile",
+        "validator",
+        "validation",
+        "typescript",
+        "javascript",
+        "modulo11"
+    ],
+    "author": "Jose Duin",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/joseduin/rut-cl.git"
+    },
+    "devDependencies": {
+        "@vitest/coverage-v8": "^4.0.18",
+        "tsup": "^8.0.0",
+        "typescript": "^5.0.0",
+        "vitest": "^4.0.18"
+    }
+}
