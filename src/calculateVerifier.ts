@@ -6,7 +6,7 @@ import { clean } from "./clean"
  * Returns null if input is not strictly numeric.
  * Does NOT validate length.
  */
-export function calculateVerifier(rut: string): string | null {
+export function getVerifier(rut: string): string | null {
     const digits = clean(rut, { strict: false })
     if (!/^[0-9]+$/.test(digits)) {
         return null

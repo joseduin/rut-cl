@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { clean, format, parse, validate, calculateVerifier, compare } from '../src/index'
+import { clean, format, parse, validate, getVerifier, compare } from '../src/index'
 
 describe('index exports', () => {
     it('should export all public API functions', () => {
@@ -7,7 +7,7 @@ describe('index exports', () => {
         expect(typeof format).toBe('function')
         expect(typeof parse).toBe('function')
         expect(typeof validate).toBe('function')
-        expect(typeof calculateVerifier).toBe('function')
+        expect(typeof getVerifier).toBe('function')
         expect(typeof compare).toBe('function')
     })
 

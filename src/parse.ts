@@ -1,7 +1,7 @@
-import { calculateVerifier } from "./calculateVerifier"
+import { getVerifier } from "./calculateVerifier"
 import { clean } from "./clean"
 
-export interface RutParsed {
+export interface ParseResult {
     raw: string
     clean: string
     digits: string
@@ -10,7 +10,7 @@ export interface RutParsed {
     isValid: boolean
 }
 
-export function parse(rut: string): RutParsed {
+export function parse(rut: string): ParseResult {
     const trimmed = rut.trim().toUpperCase()
 
     if (!/^[\d.]+-[0-9K]$/.test(trimmed)) {
@@ -30,7 +30,7 @@ export function parse(rut: string): RutParsed {
         return createEmptyParsed(rut)
     }
 
-    const expectedVerifier = calculateVerifier(digits)
+    const expectedVerifier = getVerifier(digits)
 
     const isValid = expectedVerifier !== null && expectedVerifier === verifier
 
@@ -44,7 +44,7 @@ export function parse(rut: string): RutParsed {
     }
 }
 
-function createEmptyParsed(raw: string): RutParsed {
+function createEmptyParsed(raw: string): ParseResult {
     return {
         raw,
         clean: '',

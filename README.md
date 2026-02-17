@@ -27,10 +27,15 @@ npm install rut-cl
 
 ### Validar un RUT
 
+El RUT debe contener un guion `-` separando el cuerpo del dígito verificador. Los puntos son opcionales.
+
 ```ts
 import { validate } from 'rut-cl'
 
-validate('7.618.285-K') // true
+validate('12.345.678-5') // true
+validate('12345678-5')   // true
+validate('123456785')    // false (guion obligatorio)
+validate('12,345,678-5') // false (caracteres inválidos)
 ```
 
 ---
@@ -40,28 +45,56 @@ validate('7.618.285-K') // true
 ```ts
 import { format } from 'rut-cl'
 
-format('7618285K')
-// 7.618.285-K
+format('123456785') // '12.345.678-5'
 ```
 
 Opciones:
 
 ```ts
-format('7618285K', {
-  withDots: false,
-  withHyphen: false
-})
+// Personalizar separadores
+format('12345678K', { dots: ',', hyphen: '/' }) // '12,345,678/K'
+
+// Sin puntos
+format('123456785', { dots: false }) // '12345678-5'
+
+// Sin guion
+format('12345678K', { hyphen: false }) // '12.345.678K'
+
+// Minúsculas
+format('12345678K', { uppercase: false }) // '12.345.678-k'
 ```
 
 ---
 
 ### Limpiar un RUT
 
+Elimina espacios y ceros a la izquierda por defecto.
+
 ```ts
 import { clean } from 'rut-cl'
 
-clean('7.618.285-K')
-// 7618285K
+clean('00012.345.678-5') // '123456785'
+```
+
+Opciones de limpieza:
+
+```ts
+// Modo estricto (por defecto): Remueve todo excepto números y 'K'
+clean('12*345*678-K') // '12345678K'
+
+// Modo tolerante: Solo remueve puntos, comas y guiones
+clean('12.345.678-K', { strict: false }) // '12345678K'
+```
+
+---
+
+### Obtener el dígito verificador
+
+```ts
+import { getVerifier } from 'rut-cl'
+
+getVerifier('12345678') // '5'
+getVerifier('7618285')  // 'K'
 ```
 
 ---
@@ -71,12 +104,15 @@ clean('7.618.285-K')
 ```ts
 import { parse } from 'rut-cl'
 
-parse('7.618.285-K')
-
+const res = parse('12.345.678-5')
 /*
 {
-  body: '7618285',
-  verifier: 'K'
+    raw: '12.345.678-5',
+    clean: '123456785',
+    digits: '12345678',
+    verifier: '5',
+    expectedVerifier: '5',
+    isValid: true
 }
 */
 ```
@@ -85,11 +121,13 @@ parse('7.618.285-K')
 
 ### Comparar RUTs
 
+Compara dos RUTs ignorando formato y mayúsculas.
+
 ```ts
 import { compare } from 'rut-cl'
 
-compare('7.618.285-K', '7618285k')
-// true
+compare('12.345.678-5', '123456785') // true
+compare('7618285-K', '7618285-k')     // true
 ```
 
 ---
@@ -97,11 +135,11 @@ compare('7.618.285-K', '7618285k')
 ## API
 
 * `validate(rut: string): boolean`
-* `format(rut: string, options?): string`
-* `clean(rut: string, options?): string`
-* `parse(rut: string): ParsedRut | null`
-* `compare(rut1: string, rut2: string): boolean`
-* `calculateVerifier(body: string): string | null`
+* `format(rut: string, options?: FormatOptions): string`
+* `clean(rut: string, options?: CleanOptions): string`
+* `parse(rut: string): RutParsed`
+* `compare(rut1: string, rut2: string, options?: CleanOptions): boolean`
+* `getVerifier(rut: string): string | null`
 
 ---
 
