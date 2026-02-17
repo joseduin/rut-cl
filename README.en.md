@@ -1,5 +1,12 @@
 # rut-cl
 
+![npm version](https://img.shields.io/npm/v/rut-cl?style=for-the-badge)
+![npm downloads](https://img.shields.io/npm/dm/rut-cl?style=for-the-badge)
+![bundle size](https://img.shields.io/bundlephobia/minzip/rut-cl?style=for-the-badge)
+![license](https://img.shields.io/npm/l/rut-cl?style=for-the-badge)
+![typescript](https://img.shields.io/badge/typescript-supported-blue?style=for-the-badge)
+![node](https://img.shields.io/node/v/rut-cl?style=for-the-badge)
+
 Chilean RUT (Rol Único Tributario) validator and formatter for JavaScript and TypeScript.
 
 * ✅ Zero dependencies
