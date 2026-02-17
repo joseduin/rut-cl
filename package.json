@@ -21,11 +21,17 @@
         "dev": "tsup --watch",
         "test": "vitest",
         "test:coverage": "vitest run --coverage",
-        "lint": "eslint ."
+        "lint": "eslint .",
+        "deploy": "npm publish --access public",
+        "deploy:actions": "npm version patch && git push --follow-tags"
     },
     "keywords": [
         "rut",
         "chile",
+        "rut chile",
+        "validate rut",
+        "format rut",
+        "chilean id",
         "validator",
         "validation",
         "typescript",
@@ -38,6 +44,7 @@
         "type": "git",
         "url": "https://github.com/joseduin/rut-cl.git"
     },
+    "homepage": "https://github.com/joseduin/rut-cl#readme",
     "devDependencies": {
         "@vitest/coverage-v8": "^4.0.18",
         "tsup": "^8.0.0",
