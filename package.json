@@ -1,6 +1,6 @@
 {
     "name": "rut-cl",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "🇨🇱 Minimal and robust Chilean RUT validator and formatter",
     "type": "module",
     "main": "./dist/index.cjs",
