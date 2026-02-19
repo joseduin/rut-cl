@@ -22,6 +22,7 @@
         "test": "vitest",
         "test:coverage": "vitest run --coverage",
         "lint": "eslint .",
+        "clean": "rm -rf dist",
         "deploy": "npm publish --access public",
         "deploy:actions": "npm version patch && git push --follow-tags"
     },
